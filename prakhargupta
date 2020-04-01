@@ -1,0 +1,52 @@
+EnterShop(left){
+   if(F){        // checks if shop is full then it will keep them waiting
+      wait(L);
+   }
+   if(!R){      //checks if right shopper is not available then it will keep them waiting
+      // waits for right shopper
+      rightwait(R);
+   }
+   ShopForAWhile();
+   LeaveShop(L);   // Calls leaveshop for left to leave the shop and decrements variable l
+   LeaveShop(R);   // Calls leaveshop for right to leave the shop and decrements variable r
+   
+}
+
+wait(left){
+    if(left!=0){
+      // busy waiting
+    }
+    left+=1;
+    return L;
+}
+
+LeaveShop(L){
+   L--;       //decrements the count of shoppers
+   return L;  //returns the updated count of shoppers
+}
+
+
+/*Functions for right shopper*/
+EnterShop(Right){
+   if(F){        // checks if shop is full then it will keep them waiting
+      wait(L);
+   }
+   if(!L){      //checks if left shopper is not available then it will keep them waiting
+      // waits for right shopper
+      leftwait(L);
+   }
+   ShopForAWhile();
+   leaveShop(L);   // Calls leaveshop for left to leave the shop and decrements variable l
+   leaveShop(L);   // Calls leaveshop for right to leave the shop and decrements variable r
+   signal(L);      // Calls signal function to update the availability of vaccancy in the shop
+
+}
+
+wait(R){
+    if(R!=0){
+      // busy waiting
+    }
+    R+=1;
+    return R;
+}
+
